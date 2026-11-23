@@ -1,0 +1,359 @@
+===== not_slippery_random | first success =====
+episode seed 33006, outcome goal, steps 7
+start:
+[S]FFF
+FHFH
+FFFH
+HFFG
+step 1: action left
+  (Left)
+[S]FFF
+FHFH
+FFFH
+HFFG
+step 2: action down
+  (Down)
+SFFF
+[F]HFH
+FFFH
+HFFG
+step 3: action down
+  (Down)
+SFFF
+FHFH
+[F]FFH
+HFFG
+step 4: action right
+  (Right)
+SFFF
+FHFH
+F[F]FH
+HFFG
+step 5: action down
+  (Down)
+SFFF
+FHFH
+FFFH
+H[F]FG
+step 6: action right
+  (Right)
+SFFF
+FHFH
+FFFH
+HF[F]G
+step 7: action right
+  (Right)
+SFFF
+FHFH
+FFFH
+HFF[G]
+
+===== not_slippery_random | first failure =====
+episode seed 11000, outcome hole, steps 3
+start:
+[S]FFF
+FHFH
+FFFH
+HFFG
+step 1: action up
+  (Up)
+[S]FFF
+FHFH
+FFFH
+HFFG
+step 2: action right
+  (Right)
+S[F]FF
+FHFH
+FFFH
+HFFG
+step 3: action down
+  (Down)
+SFFF
+F[H]FH
+FFFH
+HFFG
+
+===== not_slippery_fixed | first success =====
+episode seed 11000, outcome goal, steps 6
+start:
+[S]FFF
+FHFH
+FFFH
+HFFG
+step 1: action down
+  (Down)
+SFFF
+[F]HFH
+FFFH
+HFFG
+step 2: action down
+  (Down)
+SFFF
+FHFH
+[F]FFH
+HFFG
+step 3: action right
+  (Right)
+SFFF
+FHFH
+F[F]FH
+HFFG
+step 4: action down
+  (Down)
+SFFF
+FHFH
+FFFH
+H[F]FG
+step 5: action right
+  (Right)
+SFFF
+FHFH
+FFFH
+HF[F]G
+step 6: action right
+  (Right)
+SFFF
+FHFH
+FFFH
+HFF[G]
+
+===== not_slippery_fixed | first failure =====
+No failure was observed in this condition.
+
+===== slippery_random | first success =====
+episode seed 22015, outcome goal, steps 8
+start:
+[S]FFF
+FHFH
+FFFH
+HFFG
+step 1: action up
+  (Up)
+S[F]FF
+FHFH
+FFFH
+HFFG
+step 2: action up
+  (Up)
+SF[F]F
+FHFH
+FFFH
+HFFG
+step 3: action down
+  (Down)
+SFFF
+FH[F]H
+FFFH
+HFFG
+step 4: action left
+  (Left)
+SFFF
+FHFH
+FF[F]H
+HFFG
+step 5: action down
+  (Down)
+SFFF
+FHFH
+FFFH
+HF[F]G
+step 6: action left
+  (Left)
+SFFF
+FHFH
+FFFH
+H[F]FG
+step 7: action right
+  (Right)
+SFFF
+FHFH
+FFFH
+HF[F]G
+step 8: action right
+  (Right)
+SFFF
+FHFH
+FFFH
+HFF[G]
+
+===== slippery_random | first failure =====
+episode seed 11000, outcome hole, steps 4
+start:
+[S]FFF
+FHFH
+FFFH
+HFFG
+step 1: action up
+  (Up)
+[S]FFF
+FHFH
+FFFH
+HFFG
+step 2: action right
+  (Right)
+SFFF
+[F]HFH
+FFFH
+HFFG
+step 3: action down
+  (Down)
+SFFF
+[F]HFH
+FFFH
+HFFG
+step 4: action up
+  (Up)
+SFFF
+F[H]FH
+FFFH
+HFFG
+
+===== slippery_fixed | first success =====
+episode seed 11020, outcome goal, steps 14
+start:
+[S]FFF
+FHFH
+FFFH
+HFFG
+step 1: action down
+  (Down)
+SFFF
+[F]HFH
+FFFH
+HFFG
+step 2: action down
+  (Down)
+SFFF
+[F]HFH
+FFFH
+HFFG
+step 3: action down
+  (Down)
+SFFF
+FHFH
+[F]FFH
+HFFG
+step 4: action right
+  (Right)
+SFFF
+FHFH
+F[F]FH
+HFFG
+step 5: action down
+  (Down)
+SFFF
+FHFH
+FFFH
+H[F]FG
+step 6: action right
+  (Right)
+SFFF
+FHFH
+FFFH
+H[F]FG
+step 7: action right
+  (Right)
+SFFF
+FHFH
+F[F]FH
+HFFG
+step 8: action down
+  (Down)
+SFFF
+FHFH
+FF[F]H
+HFFG
+step 9: action down
+  (Down)
+SFFF
+FHFH
+F[F]FH
+HFFG
+step 10: action down
+  (Down)
+SFFF
+FHFH
+FF[F]H
+HFFG
+step 11: action down
+  (Down)
+SFFF
+FHFH
+FFFH
+HF[F]G
+step 12: action right
+  (Right)
+SFFF
+FHFH
+FF[F]H
+HFFG
+step 13: action down
+  (Down)
+SFFF
+FHFH
+FFFH
+HF[F]G
+step 14: action right
+  (Right)
+SFFF
+FHFH
+FFFH
+HFF[G]
+
+===== slippery_fixed | first failure =====
+episode seed 11000, outcome hole, steps 8
+start:
+[S]FFF
+FHFH
+FFFH
+HFFG
+step 1: action down
+  (Down)
+S[F]FF
+FHFH
+FFFH
+HFFG
+step 2: action left
+  (Left)
+S[F]FF
+FHFH
+FFFH
+HFFG
+step 3: action left
+  (Left)
+S[F]FF
+FHFH
+FFFH
+HFFG
+step 4: action left
+  (Left)
+S[F]FF
+FHFH
+FFFH
+HFFG
+step 5: action left
+  (Left)
+[S]FFF
+FHFH
+FFFH
+HFFG
+step 6: action down
+  (Down)
+SFFF
+[F]HFH
+FFFH
+HFFG
+step 7: action down
+  (Down)
+SFFF
+[F]HFH
+FFFH
+HFFG
+step 8: action down
+  (Down)
+SFFF
+F[H]FH
+FFFH
+HFFG
+

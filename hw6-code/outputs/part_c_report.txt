@@ -1,0 +1,127 @@
+
+============================================================
+1. Paper map: compare with Part A
+============================================================
+
+V1 (from V0 = 0):
+|  -1.000 |  -1.000 |  10.000 |     G 0 |
+|  -1.000 |   ##### |  -1.000 |     H 0 |
+|  -1.000 |  -1.000 |  -1.000 |  -1.000 |
+
+V2 at the requested positions (all four actions, using only V1):
+  (1, 2) tile 'M': up=-3.90, right=8.00, down=-3.90, left=-1.90  ->  V2 = 8.00, best: ['right']
+  (1, 3) tile '.': up=8.00, right=10.00, down=-1.90, left=-3.90  ->  V2 = 10.00, best: ['right']
+  (2, 3) tile 'I': up=5.21, right=-7.39, down=-2.71, left=-0.91  ->  V2 = 5.21, best: ['up']
+
+============================================================
+2. Paper map: value iteration until convergence
+============================================================
+
+Map 'paper':
+  .M.G
+  .#IH
+  S...
+Converged after 12 iterations; final max |change| = 2.165e-07
+
+Final values V*:
+|   4.200 |   8.000 |  10.000 |     G 0 |
+|   2.780 |   ##### |   5.824 |     H 0 |
+|   1.536 |   2.818 |   4.242 |   2.818 |
+
+Policy (tile letter + arrow; ties broken by order up, right, down, left):
+.> M> .> G 
+.^ #  I^ H 
+S> .> .^ .<
+Tied actions: none
+
+============================================================
+3. Extended map (D = sand -2, W = water -5)
+============================================================
+
+Map 'extended':
+  .M.G
+  .#IH
+  SD.W
+Converged after 11 iterations; final max |change| = 2.406e-07
+
+Final values V*:
+|   4.200 |   8.000 |  10.000 |     G 0 |
+|   2.780 |   ##### |   5.824 |     H 0 |
+|   1.502 |   2.818 |   4.242 |   2.818 |
+
+Policy (tile letter + arrow; ties broken by order up, right, down, left):
+.> M> .> G 
+.^ #  I^ H 
+S^ D> .^ W<
+Tied actions: none
+
+============================================================
+4. Differences extended - paper
+============================================================
+
+  (1, 1) '.'->'.': V    4.200 ->    4.200 (diff +0.000); action right -> right
+  (1, 2) 'M'->'M': V    8.000 ->    8.000 (diff +0.000); action right -> right
+  (1, 3) '.'->'.': V   10.000 ->   10.000 (diff +0.000); action right -> right
+  (2, 1) '.'->'.': V    2.780 ->    2.780 (diff +0.000); action up -> up
+  (2, 3) 'I'->'I': V    5.824 ->    5.824 (diff -0.000); action up -> up
+  (3, 1) 'S'->'S': V    1.536 ->    1.502 (diff -0.034); action right -> up (action changed)
+  (3, 2) '.'->'D': V    2.818 ->    2.818 (diff -0.000); action right -> right
+  (3, 3) '.'->'.': V    4.242 ->    4.242 (diff -0.000); action up -> up
+  (3, 4) '.'->'W': V    2.818 ->    2.818 (diff -0.000); action left -> left
+
+V(start) paper = 1.5358, extended = 1.5020
+
+============================================================
+5. Simulation of the computed policies
+============================================================
+| Map | Batch seed | Goals /50 | Holes /50 | Time limits /50 | Mean steps | Mean discounted return |
+| --- | --- | --- | --- | --- | --- | --- |
+| paper | 11 | 47 | 3 | 0 | 5.04 | 2.2297 |
+| paper | 22 | 44 | 6 | 0 | 4.96 | 1.4424 |
+| paper | 33 | 42 | 8 | 0 | 4.88 | 0.9700 |
+| extended | 11 | 50 | 0 | 0 | 5.00 | 1.5020 |
+| extended | 22 | 50 | 0 | 0 | 5.00 | 1.5020 |
+| extended | 33 | 50 | 0 | 0 | 5.00 | 1.5020 |
+
+Computed V(start): paper = 1.5358, extended = 1.5020
+
+
+============================================================
+6. Rule checks
+============================================================
+1) Walls and boundaries (blocked move = stay, reward of the tile you stay on):
+  from (1, 1) '.' action up   : p=1.0 -> (1, 1) '.' r=-1 done=False
+  from (1, 2) 'M' action down : p=1.0 -> (1, 2) 'M' r=-3 done=False
+  from (3, 2) '.' action up   : p=1.0 -> (3, 2) '.' r=-1 done=False
+  from (3, 4) '.' action right: p=1.0 -> (3, 4) '.' r=-1 done=False
+  from (2, 1) '.' action right: p=1.0 -> (2, 1) '.' r=-1 done=False
+
+2) Ice probabilities (each action, outcomes resolved against walls):
+  from (2, 3) 'I' action up   : p=0.8 -> (1, 3) '.' r=-1 done=False; p=0.1 -> (2, 3) 'I' r=-1 done=False; p=0.1 -> (2, 4) 'H' r=-10 done=True
+     sum of probabilities = 1.0
+  from (2, 3) 'I' action right: p=0.8 -> (2, 4) 'H' r=-10 done=True; p=0.1 -> (1, 3) '.' r=-1 done=False; p=0.1 -> (3, 3) '.' r=-1 done=False
+     sum of probabilities = 1.0
+  from (2, 3) 'I' action down : p=0.8 -> (3, 3) '.' r=-1 done=False; p=0.1 -> (2, 3) 'I' r=-1 done=False; p=0.1 -> (2, 4) 'H' r=-10 done=True
+     sum of probabilities = 1.0
+  from (2, 3) 'I' action left : p=0.8 -> (2, 3) 'I' r=-1 done=False; p=0.1 -> (1, 3) '.' r=-1 done=False; p=0.1 -> (3, 3) '.' r=-1 done=False
+     sum of probabilities = 1.0
+   Non-ice tiles are deterministic:
+  from (3, 1) 'S' action left : p=1.0 -> (3, 1) 'S' r=-1 done=False
+  from (1, 2) 'M' action left : p=1.0 -> (1, 1) '.' r=-1 done=False
+  from (3, 2) 'D' action left : p=1.0 -> (3, 1) 'S' r=-1 done=False
+  from (3, 4) 'W' action left : p=1.0 -> (3, 3) '.' r=-1 done=False
+
+3) Floor rewards on entering (extended map):
+  from (1, 1) '.' action right: p=1.0 -> (1, 2) 'M' r=-3 done=False
+  from (3, 1) 'S' action right: p=1.0 -> (3, 2) 'D' r=-2 done=False
+  from (3, 3) '.' action right: p=1.0 -> (3, 4) 'W' r=-5 done=False
+  from (1, 3) '.' action right: p=1.0 -> (1, 4) 'G' r=10 done=True
+  from (3, 4) 'W' action up   : p=1.0 -> (2, 4) 'H' r=-10 done=True
+
+4) Termination: G and H give no further reward and keep value 0:
+  (1, 4) 'G': every action -> [(1.0, (1, 4), 0.0, True)]
+  (2, 4) 'H': every action -> [(1.0, (2, 4), 0.0, True)]
+  V(G) = 0.0, V(H) = 0.0
+  The wall (2,2) is not a state: True
+
+All checks passed.
