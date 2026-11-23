@@ -7,7 +7,7 @@
 
 ## Setup and reproduction
 
-Versions used: Python 3.x (see `python --version`), `gymnasium==1.4.0`, `numpy==2.5.5` (pinned in `requirements.txt`).
+Versions used: Python 3.14.6, `gymnasium==1.4.0`, `numpy==2.5.5` (pinned in `requirements.txt`).
 
 ```powershell
 python -m venv .venv
